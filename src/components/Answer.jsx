@@ -12,7 +12,7 @@ const Answer = (contentOf) => {
   // const classes = useStyles();
 
   return(
-    <Button variant="contained" color="primary">
+    <Button variant="contained" color="primary" onClick={() => contentOf.select(contentOf.content, contentOf.nextId)} >
       {contentOf.content}
     </Button>
   )
