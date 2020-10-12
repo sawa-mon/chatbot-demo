@@ -2,6 +2,7 @@ import React from 'react';
 import defaultDataset from "./dataset";
 import './assets/styles/style.css'
 import { AnswersList, Chats } from "./components/index"
+import FormDialog from './components/Forms/FormDialog';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -15,6 +16,8 @@ export default class App extends React.Component {
     }
     this.selectAnswer = this.selectAnswer.bind(this) //これでthis.selectAnswerがbindされたコールバック関数になる
     //renderのたびに毎回コールバック関数を生成されるのを防ぐことで、bindを使用しパフォーマンス低下を防ぐ
+    this.handleClickOpen = this.handleClickOpen.bind(this)
+    this.handleClose = this.handleClose.bind(this)
   }
 
   displayNextQuestion = (nextQuestionId) => { //nextQuestionIdを引数にとっておこなう
@@ -34,8 +37,20 @@ export default class App extends React.Component {
   selectAnswer = (selectedAnswer, nextQuestionId) => {
     switch(true) {
       case (nextQuestionId === 'init'):
-        this.displayNextQuestion(nextQuestionId)
+        setTimeout(() => this.displayNextQuestion(nextQuestionId), 500)
         break;
+
+      case (nextQuestionId === 'contact'):
+        this.handleClickOpen();
+        break;
+      
+      case (/^https:*/.test(nextQuestionId)):
+        const a = document.createElement('a');
+        a.href = nextQuestionId;
+        a.target = '_blank';
+        a.click();
+        break;
+
       default:
         const chats = this.state.chats; //現在の状態を変数をもたせて取得
         chats.push({ //chatsは最初は空の配列だが、"chat"の連想配列をpushしてやる
@@ -50,7 +65,7 @@ export default class App extends React.Component {
           chats: chats
         })
         
-        this.displayNextQuestion(nextQuestionId) //先程作成した関数を呼び出す引数は()内
+        setTimeout(() => this.displayNextQuestion(nextQuestionId), 1500) //先程作成した関数を呼び出す引数は()内
         break;
     }
   }
@@ -64,10 +79,25 @@ export default class App extends React.Component {
     })
   }
 
-      componentDidMount() {
-        const initAnswer = "";
-        this.selectAnswer(initAnswer, this.state.currentId)
-      }
+  handleClickOpen = () => {
+    this.setState({open: true});
+  };
+
+  handleClose = () => {
+    this.setState({open: false});
+  };
+
+  componentDidMount() {
+    const initAnswer = "";
+    this.selectAnswer(initAnswer, this.state.currentId)
+  }
+
+  componentDidUpdate() { //内容によっては()内に打ち込む=> (prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS)
+    const scrollArea = document.getElementById('scroll-area')
+    if(scrollArea) {
+      scrollArea.scrollTop = scrollArea.scrollHeight
+    }
+  }
 
 
   render () {
@@ -78,6 +108,7 @@ export default class App extends React.Component {
           <AnswersList answers={this.state.answers} select={this.selectAnswer}
            //select={this.selectAnswer()} <=()は無し[ついてるとrender毎にコールバック関数が走る為]}
           />
+           <FormDialog open={this.state.open} handleClose={this.handleClose} />
         </div>
       </section>
     );
