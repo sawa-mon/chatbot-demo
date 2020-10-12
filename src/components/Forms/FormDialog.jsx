@@ -34,8 +34,7 @@ export default class FormDialog extends React.Component {
   submitForm = () => { //フォームバリデーションは未実装
     const name = this.state.name
     const email = this.state.email
-    const description = this.state.description
-    
+    const description = this.state.description    
   }
 
   render() {
