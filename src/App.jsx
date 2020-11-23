@@ -11,7 +11,7 @@ const App = () => {
     const [currentId, setCurrentId] = useState("init");
     const dataset = defaultDataset;
     const [open, setOpen] = useState(false);
-
+    const [noneDisplay, setNoneDisplay] = useState(false);
 
   const displayNextQuestion = (nextQuestionId, nextDataset) => {
       addChats({
@@ -25,6 +25,10 @@ const App = () => {
 
   const selectAnswer = (selectedAnswer, nextQuestionId) => {
     switch(true) {
+
+      case (nextQuestionId === 'init'):
+        setTimeout(() => displayNextQuestion(nextQuestionId, dataset[nextQuestionId]), 1000);
+        break;
 
       case (nextQuestionId === 'contact'):
         handleOpen();
@@ -41,33 +45,38 @@ const App = () => {
         addChats({ 
         text: selectedAnswer,
         type: 'answer'
-        })
+        });
 
-        setTimeout(() => displayNextQuestion(nextQuestionId, dataset[nextQuestionId]), 1200) //先程作成した関数を呼び出す引数は()内
-        break;
-    }
+        setNoneDisplay(true);
+        setTimeout(() => (
+          displayNextQuestion(nextQuestionId, dataset[nextQuestionId])
+          ),1200)
+          break;
+        }
+
   }
 
-  const addChats = (chat)　=> {
+  const addChats = (chat) => {
     setChats(prevChats => {
       return [...prevChats, chat]
     })
+    setNoneDisplay(false);
   }
-
+  
   const handleOpen = () => {
     setOpen(true)
   };
-
+  
   const handleClose = useCallback(() => {
     setOpen(false)
   }, [setOpen]);
-
+  
   useEffect(() => {
     const initAnswer = "";
     selectAnswer(initAnswer, currentId)
-},[]);
-
-
+  },[]);
+  
+  
   useEffect(() => {
     const scrollArea = document.getElementById('scroll-area')
     if(scrollArea) {
@@ -75,13 +84,14 @@ const App = () => {
     }
   })
 
-
   return (
     <section className="c-section">
       <div className="c-box">
         <Chats chats={chats} />
-        <AnswersList answers={answers} select={selectAnswer} />
-        <FormDialog　open={open} handleOpen={handleOpen} handleClose={handleClose} />
+        {!noneDisplay && (
+          <AnswersList answers={answers} select={selectAnswer} />
+        )}
+        <FormDialog open={open} handleOpen={handleOpen} handleClose={handleClose} />
       </div>
     </section>
     );

@@ -2,8 +2,8 @@ const defaultDataset = {
   "init": {
       answers: [
           {content: "仕事を依頼したい", nextId: "job_offer"},
-          {content: "エンジニアのキャリアについて相談したい", nextId: "consultant"},
-          {content: "学習コミュニティについて知りたい", nextId: "community"},
+          {content: "自転車のコミュニティってどんなことしてるの？", nextId: "community"},
+          {content: "まずはお話してみたい", nextId: "speak"},
           {content: "お付き合いしたい", nextId: "dating"},
       ],
       question: "こんにちは！ご用件はなんでしょうか？",
@@ -45,37 +45,46 @@ const defaultDataset = {
       ],
       question: "その他についてですね。コチラからお問い合わせできます。",
   },
-  "consultant": {
-      answers: [
-          {content: "YouTubeで動画を見る", nextId: "https://www.youtube.com/channel/UC-bOAxx-YOsviSmqh8COR0w"},
-          {content: "学習コミュニティについて知りたい", nextId: "community"},
-          {content: "最初の質問に戻る", nextId: "init"}
-      ],
-      question: "普段からYouTubeで発信しています。また、僕が運営するコミュニティでも相談に乗っていますよ。",
-  },
   "community": {
       answers: [
-          {content: "どんな活動をしているの？", nextId: "community_activity"},
-          {content: "コミュニティに参加したい", nextId: "https://torahack.web.app/community/"},
+          {content: "当コミュニティを表現した必見YouTube動画を見る", nextId: "https://www.youtube.com/watch?v=ACEBZ-KmuQo"},
+          {content: "走行会を実施しています。気になる方はこちらから", nextId: "community_activity"},
           {content: "最初の質問に戻る", nextId: "init"}
       ],
-      question: "2020年3月から学習コミュニティを始めました！🎉Webエンジニアへの転職を目指す人向けに、プログラミングを教えたりキャリアの相談に乗っています。",
+      question: "コミュニティ内で不定期に走行会などを実施しています。また、必見YouTube動画をご覧頂ければ概要をご覧頂けます。",
+  },
+  "speak": {
+      answers: [
+          {content: "どんな活動をしているのか気になる", nextId: "community"},
+          {content: "コミュニティがどういうものか気になる", nextId: "community_activity"},
+          {content: "直接お話してみたい", nextId: "dating"},
+          {content: "最初の質問に戻る", nextId: "init"}
+      ],
+      question: "そうですね。どういったことをお聞きしたいですか？",
   },
   "community_activity": {
       answers: [
-          {content: "さらに詳細を知りたい", nextId: "https://youtu.be/tIzE7hUDbBM"},
-          {content: "コミュニティに参加したい", nextId: "https://torahack.web.app/community/"},
+          {content: "BANDをダウンロードのうえ、加入申請して下さい", nextId: "https://band.us/n/a6aa454aE0W7J"},
+          {content: "まずは１度走行会に参加してみたい", nextId: "cycling"},
           {content: "最初の質問に戻る", nextId: "init"}
       ],
-      question: "フロントエンド向けの教材の提供、キャリアや勉強法に関するメルマガの配信、週1のオンライン作業会などを開催しています！\n詳細はYouTube動画で紹介しています。",
+      question: "コミュニティ運営を行っているアプリに加入頂くか、一度走行会に顔を出してみて下さい😉",
   },
   "dating": {
       answers: [
-          {content: "DMする", nextId: "https://twitter.com/torahack_"},
+          {content: "DMする", nextId: "https://www.instagram.com/wasamonsan"},
           {content: "最初の質問に戻る", nextId: "init"}
       ],
-      question: "まずは一緒にランチでもいかがですか？DMしてください😘",
+      question: "まずは一緒に食事でもいかがですか？DMしてください😘",
   },
+  "cycling": {
+    answers: [
+        {content: "詳細日をDMにて確認する", nextId: "https://www.instagram.com/wasamonsan"},
+        {content: "最初の質問に戻る", nextId: "init"}
+    ],
+    question: "不定期での開催となるため直近での開催日有無についてはDMにてご確認願います。また、アプリメンバーに加入することで開催日の案内を受け取ることができます。",
+},
+
 }
 
 export default defaultDataset
