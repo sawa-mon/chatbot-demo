@@ -5,16 +5,15 @@ import Button from '@material-ui/core/Button';
 const useStyles = makeStyles(() => ( // material-ui の見た目をカスタマイズする
     createStyles({
       "button": {
-        borderColor: '#FFB549',
-        color: '#FFB549',
+        borderColor: '#499eff',
+        color: '#499eff',
         fontWeight: 600,
         marginBottom: '8px',
         "&:hover": {
           backgroundColor: '#FFB549',
-          color: '#fff'
-        }
-      }
-    })
+          color: '#fff',
+        }}
+      })
 ));
 
 const Answer = (contentOf) => {

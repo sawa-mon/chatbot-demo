@@ -3,6 +3,7 @@ import defaultDataset from "./dataset";
 import './assets/styles/style.css'
 import { AnswersList, Chats } from "./components/index"
 import FormDialog from './components/Forms/FormDialog';
+import { Loading } from './components/Loading';
 
 
 const App = () => {
@@ -27,6 +28,7 @@ const App = () => {
     switch(true) {
 
       case (nextQuestionId === 'init'):
+        setNoneDisplay(true);
         setTimeout(() => displayNextQuestion(nextQuestionId, dataset[nextQuestionId]), 1000);
         break;
 
@@ -88,8 +90,10 @@ const App = () => {
     <section className="c-section">
       <div className="c-box">
         <Chats chats={chats} />
-        {!noneDisplay && (
+        {!noneDisplay ? (
           <AnswersList answers={answers} select={selectAnswer} />
+        ) : (
+          <Loading/>
         )}
         <FormDialog open={open} handleOpen={handleOpen} handleClose={handleClose} />
       </div>

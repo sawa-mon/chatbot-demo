@@ -65,24 +65,25 @@ const defaultDataset = {
   "community_activity": {
       answers: [
           {content: "BANDをダウンロードのうえ、加入申請して下さい", nextId: "https://band.us/n/a6aa454aE0W7J"},
-          {content: "まずは１度走行会に参加してみたい", nextId: "cycling"},
+          {content: "まずは一回、走行会に参加してみたい", nextId: "cycling"},
           {content: "最初の質問に戻る", nextId: "init"}
-      ],
-      question: "コミュニティ運営を行っているアプリに加入頂くか、一度走行会に顔を出してみて下さい😉",
-  },
-  "dating": {
-      answers: [
-          {content: "DMする", nextId: "https://www.instagram.com/wasamonsan"},
-          {content: "最初の質問に戻る", nextId: "init"}
-      ],
-      question: "まずは一緒に食事でもいかがですか？DMしてください😘",
-  },
-  "cycling": {
-    answers: [
-        {content: "詳細日をDMにて確認する", nextId: "https://www.instagram.com/wasamonsan"},
+        ],
+        question: "コミュニティ運営を行っているアプリに加入頂くか、一度走行会に顔を出してみて下さい😉",
+    },
+    "dating": {
+        answers: [
+            {content: "DMする", nextId: "https://www.instagram.com/wasamonsan"},
+            {content: "最初の質問に戻る", nextId: "init"}
+        ],
+        question: "まずは一緒に食事でもいかがですか？DMしてください😘",
+    },
+    "cycling": {
+        answers: [
+        {content: "詳細日実施日を問い合わせフォームから確認する", nextId: "contact"},
+        {content: "BANDをダウンロードのうえ、加入申請する", nextId: "https://band.us/n/a6aa454aE0W7J"},
         {content: "最初の質問に戻る", nextId: "init"}
     ],
-    question: "不定期での開催となるため直近での開催日有無についてはDMにてご確認願います。また、アプリメンバーに加入することで開催日の案内を受け取ることができます。",
+    question: "不定期での開催となるため直近の開催日程につきましてはお問い合わせフォームよりご確認願います。また、アプリメンバーに加入することで開催日の案内を受け取ることができますのでこちらもおすすめです。",
 },
 
 }

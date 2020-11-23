@@ -3,7 +3,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import NoProfile from '../assets/img/no-profile.jpg';
-import Road from '../assets/img/road.jpg';
+import profilenone from '../assets/img/profilenone.png';
 
 const Chat = (chatTxt) => {
   const isQuestion = (chatTxt.type === 'question');
@@ -16,7 +16,7 @@ const Chat = (chatTxt) => {
       {isQuestion ? (
         <Avatar alt="icon" src={NoProfile} />
         ) : (
-        <Avatar alt="icon" src={Road} /> 
+        <Avatar alt="icon" src={profilenone} /> 
       )}
     </ListItemAvatar>
   <div className="p-chat__bubble">{chatTxt.text}</div>
